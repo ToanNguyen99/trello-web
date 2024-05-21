@@ -22,7 +22,8 @@ function BoardBar() {
         justifyContent: 'space-between',
         gap: 2,
         overflowX: 'auto',
-        borderTop: '1px solid #00bfa5',
+        borderBottom: '1px solid #00bfa5',
+        bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#34495e' : '#1976d2'),
         px: 2
       }}
     >
@@ -33,11 +34,12 @@ function BoardBar() {
           clickable
           sx={{
             borderRadius: '4px',
-            color: 'primary.main',
+            color: 'white',
             border: 'none',
+            backgroundColor: 'transparent',
             paddingX: '5px',
             '& .MuiSvgIcon-root': {
-              color: 'primary.main'
+              color: 'white'
             },
             '&:hover': {
               bgcolor: 'primary.50'
@@ -50,11 +52,12 @@ function BoardBar() {
           clickable
           sx={{
             borderRadius: '4px',
-            color: 'primary.main',
+            color: 'white',
             border: 'none',
+            backgroundColor: 'transparent',
             paddingX: '5px',
             '& .MuiSvgIcon-root': {
-              color: 'primary.main'
+              color: 'white'
             },
             '&:hover': {
               bgcolor: 'primary.50'
@@ -67,11 +70,12 @@ function BoardBar() {
           clickable
           sx={{
             borderRadius: '4px',
-            color: 'primary.main',
+            color: 'white',
             border: 'none',
+            backgroundColor: 'transparent',
             paddingX: '5px',
             '& .MuiSvgIcon-root': {
-              color: 'primary.main'
+              color: 'white'
             },
             '&:hover': {
               bgcolor: 'primary.50'
@@ -84,11 +88,12 @@ function BoardBar() {
           clickable
           sx={{
             borderRadius: '4px',
-            color: 'primary.main',
+            color: 'white',
             border: 'none',
+            backgroundColor: 'transparent',
             paddingX: '5px',
             '& .MuiSvgIcon-root': {
-              color: 'primary.main'
+              color: 'white'
             },
             '&:hover': {
               bgcolor: 'primary.50'
@@ -101,11 +106,12 @@ function BoardBar() {
           clickable
           sx={{
             borderRadius: '4px',
-            color: 'primary.main',
+            color: 'white',
             border: 'none',
+            backgroundColor: 'transparent',
             paddingX: '5px',
             '& .MuiSvgIcon-root': {
-              color: 'primary.main'
+              color: 'white'
             },
             '&:hover': {
               bgcolor: 'primary.50'
@@ -122,9 +128,30 @@ function BoardBar() {
           height: 30
         }
       }}>
-        <Button variant="outlined" startIcon={<PersonAddIcon/>}>Create</Button>
+        <Button
+          variant="outlined"
+          startIcon={<PersonAddIcon/>}
+          sx={{
+            color: 'white',
+            borderColor: 'white',
+            '&:hover': { borderColor: 'white' }
+          }}
+        >
+            Invite
+        </Button>
 
-        <AvatarGroup max={6}>
+        <AvatarGroup
+          max={6}
+          sx={{
+            gap: '10px',
+            '.MuiAvatar-root': {
+              width: 34,
+              height: 34,
+              fontSize: 16,
+              border: 'none'
+            }
+          }}
+        >
           <Tooltip sx={{ cursor: 'pointer' }} title="Toàn Nguyễn">
             <Avatar alt="Remy Sharp" src="https://scontent.fsgn5-5.fna.fbcdn.net/v/t39.30808-6/426531945_2651467745014509_5145933200490941750_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGVJEqivR_4uHqzttD8IQqYF7KNG-hknsAXso0b6GSewJFJ9jWmgGiijU5Sfokl-YomeKhcQtD0pPyIcRbPXfUF&_nc_ohc=Mg1kdo6LkqwQ7kNvgHxkRIB&_nc_ht=scontent.fsgn5-5.fna&oh=00_AYDO7ktqXRmxK7sznic1tqmFdbC31tJwfjgbf3ZH_wkDDQ&oe=66478DAC" />
           </Tooltip>
