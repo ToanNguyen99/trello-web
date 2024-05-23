@@ -23,7 +23,7 @@ import { useState } from 'react'
 
 
 function AppBar() {
-  const [ searchValue, setSearchValue ] = useState('')
+  const [searchValue, setSearchValue] = useState('')
 
   return (
     <Box px={2} sx={{
@@ -34,6 +34,7 @@ function AppBar() {
       justifyContent: 'space-between',
       gap: 2,
       overflowX: 'auto',
+      '&::-webkit-scrollbar-track': { m: 2 },
       bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#2c3e50' : '#1565c0')
     }}>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
