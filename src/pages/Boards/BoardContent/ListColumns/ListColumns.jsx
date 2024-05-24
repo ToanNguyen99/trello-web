@@ -3,7 +3,7 @@ import Columns from './Columns/Columns'
 import Button from '@mui/material/Button'
 import NoteAddIcon from '@mui/icons-material/NoteAdd'
 
-function ListColumns() {
+function ListColumns({ columns }) {
   return (
     <Box sx={{
       bgcolor: 'inherit',
@@ -15,8 +15,7 @@ function ListColumns() {
       height: '100%'
     }}>
       {/* Box Column */}
-      <Columns />
-      <Columns />
+      {columns?.map((column) => <Columns column={column} key={column._id}/>)}
 
       {/* Button add new Column */}
       <Box sx={{

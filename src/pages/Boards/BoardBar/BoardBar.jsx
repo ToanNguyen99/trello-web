@@ -10,8 +10,9 @@ import AvatarGroup from '@mui/material/AvatarGroup'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Chip from '@mui/material/Chip'
+import { capitalizeFirstLetter } from '~/utils/formatters'
 
-function BoardBar() {
+function BoardBar({ board }) {
   return (
     <Box
       sx={{
@@ -30,7 +31,7 @@ function BoardBar() {
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
         <Chip
           icon={<DashboardIcon fontSize='small'/>}
-          label="Toan Toan MERN Stack Board"
+          label={board?.title}
           clickable
           sx={{
             borderRadius: '4px',
@@ -48,7 +49,7 @@ function BoardBar() {
         />
         <Chip
           icon={<VpnLockIcon fontSize='small'/>}
-          label="Public/Private Workspace"
+          label={capitalizeFirstLetter(board?.type)}
           clickable
           sx={{
             borderRadius: '4px',
