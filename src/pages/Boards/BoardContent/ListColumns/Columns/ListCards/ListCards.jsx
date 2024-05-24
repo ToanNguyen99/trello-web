@@ -1,10 +1,7 @@
 import Box from '@mui/material/Box'
 import Card from './Card/Card'
 
-const COLUMN_HEADER_HEIGHT = '50px'
-const COLUMN_FOOTER_HEIGHT = '56px'
-
-function ListCards() {
+function ListCards({ cards }) {
   return (
     <Box sx={{
       p: '0 5px',
@@ -17,8 +14,8 @@ function ListCards() {
       maxHeight: (theme) => `
         calc(${theme.trello.boardContentHeight} - 
         ${theme.spacing(5)} -
-        ${COLUMN_HEADER_HEIGHT} -
-        ${COLUMN_FOOTER_HEIGHT}
+        ${theme.trello.columnHeaderHeight} -
+        ${theme.trello.columnFooterHeight}
       )`,
       '&::-webkit-scrollbar-thumb': {
         backgroundColor: '#ced0da'
@@ -28,13 +25,7 @@ function ListCards() {
       }
     }}
     >
-      <Card />
-      <Card cardHideMedia />
-      <Card cardHideMedia />
-      <Card cardHideMedia />
-      <Card cardHideMedia />
-      <Card cardHideMedia />
-      <Card cardHideMedia />
+      {cards?.map((card) => <Card card={card} key={card._id}/>)}
     </Box>
   )
 }

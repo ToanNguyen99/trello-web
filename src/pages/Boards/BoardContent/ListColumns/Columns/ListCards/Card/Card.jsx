@@ -8,21 +8,11 @@ import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 
-function Card({ cardHideMedia }) {
-  if (cardHideMedia) {
-    return (
-      <MuiCard sx={{
-        boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
-        cursor: 'pointer',
-        overflow: 'unset'
-      }}>
-        <CardContent sx={{ p: 1.5 }}>
-          <Typography>
-            Card 1
-          </Typography>
-        </CardContent>
-      </MuiCard>
-    )
+
+function Card({ card }) {
+
+  const shouldShowCardAction = () => {
+    return !!card?.memberIds?.length || !!card?.comments?.length || !!card?.attachments?.length
   }
 
   return (
@@ -31,22 +21,32 @@ function Card({ cardHideMedia }) {
       cursor: 'pointer',
       overflow: 'unset'
     }}>
-      <CardMedia
-        component="img"
-        alt="green iguana"
-        height="140"
-        image="https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=1200,height=675/catalog/crunchyroll/a249096c7812deb8c3c2c907173f3774.jpe"
-      />
-      <CardContent sx={{ p: 1.5 }}>
+      {card?.cover &&
+        <CardMedia
+          component="img"
+          alt="green iguana"
+          height="140"
+          image={card?.cover}
+        />
+      }
+      <CardContent sx={{ p: 1.5, '&:last-child': { p: 1.5 } }}>
         <Typography>
-          One Piece
+          {card?.title}
         </Typography>
       </CardContent>
-      <CardActions sx={{ p: '0 4px 8px 4px' }}>
-        <Button size="small" startIcon={<GroupIcon/>}>20</Button>
-        <Button size="small" startIcon={<ChatIcon/>}>15</Button>
-        <Button size="small" startIcon={<AttachmentIcon/>}>10</Button>
-      </CardActions>
+      {shouldShowCardAction() &&
+        <CardActions sx={{ p: '0 4px 8px 4px' }}>
+          {!!card?.memberIds?.length &&
+            <Button size="small" startIcon={<GroupIcon/>}>{card?.memberIds?.length}</Button>
+          }
+          {!!card?.comments?.length &&
+            <Button size="small" startIcon={<ChatIcon/>}>{card?.comments?.length}</Button>
+          }
+          {!!card?.attachments?.length &&
+            <Button size="small" startIcon={<AttachmentIcon/>}>{card?.attachments?.length}</Button>
+          }
+        </CardActions>
+      }
     </MuiCard>
   )
 }

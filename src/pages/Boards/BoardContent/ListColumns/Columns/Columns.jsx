@@ -17,11 +17,9 @@ import Tooltip from '@mui/material/Tooltip'
 import Typography from '@mui/material/Typography'
 import { useState } from 'react'
 import ListCards from './ListCards/ListCards'
+import { mapOrder } from '~/utils/sorts'
 
-const COLUMN_HEADER_HEIGHT = '50px'
-const COLUMN_FOOTER_HEIGHT = '56px'
-
-function Columns() {
+function Columns({ column }) {
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
@@ -30,6 +28,8 @@ function Columns() {
   const handleClose = () => {
     setAnchorEl(null)
   }
+
+  const orderedCards = mapOrder(column?.cards, column?.cardOrderIds, '_id')
 
   return (
     <Box sx={{
@@ -43,7 +43,7 @@ function Columns() {
     }}>
       {/* Header */}
       <Box sx={{
-        height: COLUMN_HEADER_HEIGHT,
+        height: (theme) => theme.trello.columnHeaderHeight,
         p: 2,
         display: 'flex',
         alignItems: 'center',
@@ -108,10 +108,10 @@ function Columns() {
         </Box>
       </Box>
       {/* List cards */}
-      <ListCards />
+      <ListCards cards={orderedCards}/>
       {/* Footer */}
       <Box sx={{
-        height: COLUMN_FOOTER_HEIGHT,
+        height: (theme) => theme.trello.columnFooterHeight,
         p: 2,
         display: 'flex',
         alignItems: 'center',
