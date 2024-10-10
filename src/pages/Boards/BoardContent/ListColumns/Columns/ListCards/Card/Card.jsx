@@ -32,7 +32,9 @@ function Card({ card }) {
       sx={{
         boxShadow: '0 1px 1px rgba(0, 0, 0, 0.2)',
         cursor: 'pointer',
-        overflow: 'unset'
+        overflow: 'unset',
+        border: '1px solid transparent',
+        '&:hover': { borderColor: (theme) => theme.palette.primary.main }
       }}>
       {card?.cover &&
         <CardMedia

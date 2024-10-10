@@ -29,24 +29,26 @@ function BoardBar({ board }) {
       }}
     >
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-        <Chip
-          icon={<DashboardIcon fontSize='small'/>}
-          label={board?.title}
-          clickable
-          sx={{
-            borderRadius: '4px',
-            color: 'white',
-            border: 'none',
-            backgroundColor: 'transparent',
-            paddingX: '5px',
-            '& .MuiSvgIcon-root': {
-              color: 'white'
-            },
-            '&:hover': {
-              bgcolor: 'primary.50'
-            }
-          }}
-        />
+        <Tooltip title={board?.description}>
+          <Chip
+            icon={<DashboardIcon fontSize='small'/>}
+            label={board?.title}
+            clickable
+            sx={{
+              borderRadius: '4px',
+              color: 'white',
+              border: 'none',
+              backgroundColor: 'transparent',
+              paddingX: '5px',
+              '& .MuiSvgIcon-root': {
+                color: 'white'
+              },
+              '&:hover': {
+                bgcolor: 'primary.50'
+              }
+            }}
+          />
+        </Tooltip>
         <Chip
           icon={<VpnLockIcon fontSize='small'/>}
           label={capitalizeFirstLetter(board?.type)}
