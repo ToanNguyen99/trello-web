@@ -35,7 +35,7 @@ function Card({ card }) {
         overflow: 'unset',
         border: '1px solid transparent',
         '&:hover': { borderColor: (theme) => theme.palette.primary.main },
-        // display: card?.FE_PlaceholderCard ? 'none' : 'block'
+        display: card?.FE_PlaceholderCard ? 'none' : 'block'
       }}>
       {card?.cover &&
         <CardMedia

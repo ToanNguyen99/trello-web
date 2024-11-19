@@ -174,6 +174,7 @@ function Columns({ column }) {
                 size='small'
                 variant='outlined'
                 autoFocus
+                data-no-dnd="true"
                 value={newCardTitle}
                 onChange={(e) => setNewCardTitle(e.target.value)}
                 sx={{
@@ -195,6 +196,7 @@ function Columns({ column }) {
               />
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <Button
+                  data-no-dnd="true"
                   onClick={addNewCard}
                   variant='contained' color='success' size='small'
                   sx={{
@@ -205,6 +207,7 @@ function Columns({ column }) {
                   }}
                 >Add</Button>
                 <CloseIcon
+                  data-no-dnd="true"
                   fontSize='small'
                   sx={{
                     color: (theme) => theme.palette.success.light,
