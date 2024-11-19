@@ -6,8 +6,8 @@ import {
   // PointerSensor,
   useSensor,
   useSensors,
-  MouseSensor,
-  TouchSensor,
+  // MouseSensor,
+  // TouchSensor,
   DragOverlay,
   defaultDropAnimationSideEffects,
   pointerWithin,
@@ -16,6 +16,7 @@ import {
   getFirstCollision
   // closestCenter
 } from '@dnd-kit/core'
+import { MouseSensor, TouchSensor } from '~/customLibs/DndKitSensors'
 import { arrayMove } from '@dnd-kit/sortable'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { cloneDeep, isEmpty } from 'lodash'
@@ -93,7 +94,7 @@ function BoardContent({ board }) {
         nextActiveColumn.cards = nextActiveColumn.cards.filter(card => card._id !== activeDraggingCardId)
         // Thêm placeholder card nếu column rỗng khi bị kéo hết card đi (video 37.2)
         if (isEmpty(nextActiveColumn.cards)) {
-          console.log('Card cuoi cung bi keo di')
+          // console.log('Card cuoi cung bi keo di')
           nextActiveColumn.cards = [generatePlacehoderCard(nextActiveColumn)]
         }
         // Cập nhật lại mảng cardOrderIds
