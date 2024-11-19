@@ -22,6 +22,7 @@ import Typography from '@mui/material/Typography'
 import { useState } from 'react'
 import { mapOrder } from '~/utils/sorts'
 import ListCards from './ListCards/ListCards'
+import { toast } from 'react-toastify'
 
 
 function Columns({ column }) {
@@ -52,7 +53,10 @@ function Columns({ column }) {
   const [newCardTitle, setNewCardTitle] = useState('')
 
   const addNewCard = () => {
-    if (!newCardTitle) return
+    if (!newCardTitle) {
+      toast.error('Please enter card title')
+      return
+    }
 
     /// Xử lý gọi api thêm column
 
