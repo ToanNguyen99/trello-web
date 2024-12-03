@@ -29,7 +29,7 @@ const ACTIVE_DRAG_ITEM_TYPE = {
   CARD: 'ACTIVE_DRAG_ITEM_TYPE_CARD'
 }
 
-function BoardContent({ board, createNewColumn, createNewCard }) {
+function BoardContent({ board, createNewColumn, createNewCard, moveColumns }) {
   // const pointerSensor = useSensor(PointerSensor, { activationConstraint: { distance: 10 } })
   // Yêu cầu chuột di chuyển 10px mới kích hoạt event, fix trường hợp click bị gọi event
   const mouseSensor = useSensor(MouseSensor, { activationConstraint: { distance: 10 } })
@@ -248,11 +248,9 @@ function BoardContent({ board, createNewColumn, createNewCard }) {
 
         // Dùng ArrayMove để sắp xếp lại mảng ban đầu
         const dndOderedColumns = arrayMove(orderedColumns, oldColumnIndex, newColumnIndex)
-        // 2 cái dưới để dùng xử lý gọi API
-        // const dndOderedColumnsIds = dndOderedColumns.map(c => c._id)
-        // console.log('dndOderedColumns::', dndOderedColumns);
-        // console.log('dndOderedColumnsIds::', dndOderedColumnsIds);
 
+        // Di chuyển hàm xử lý kéo thả column ra ngoài board id để call lại api
+        moveColumns(dndOderedColumns)
         // Set lại comlumn sau khi đã kéo thả
         setOrderedColumns(dndOderedColumns)
       }
