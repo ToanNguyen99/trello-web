@@ -9,19 +9,22 @@ import Columns from './Columns/Columns'
 import { toast } from 'react-toastify'
 
 
-function ListColumns({ columns }) {
+function ListColumns({ columns, createNewColumn, createNewCard }) {
   const [openNewColumnForm, setOpenNewColumnForm] = useState(false)
   const toggleOpenNewColumnForm = () => setOpenNewColumnForm(!openNewColumnForm)
   const [newColumnTitle, setNewColumnTitle] = useState('')
 
-  const addNewColumn = () => {
+  const addNewColumn = async () => {
     if (!newColumnTitle) {
       toast.error('Please enter column title')
       return
     }
 
+    const newColumnData = {
+      title: newColumnTitle
+    }
     /// Xử lý gọi api thêm column
-
+    await createNewColumn(newColumnData)
     // Đóng trạng thái thêm column mới và clear input
     toggleOpenNewColumnForm()
     setNewColumnTitle('')
@@ -39,7 +42,7 @@ function ListColumns({ columns }) {
         height: '100%'
       }}>
         {/* Box Column */}
-        {columns?.map((column) => <Columns column={column} key={column._id}/>)}
+        {columns?.map((column) => <Columns column={column} key={column._id} createNewCard={createNewCard}/>)}
 
         {/* Button add new Column */}
         {!openNewColumnForm

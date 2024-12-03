@@ -25,7 +25,7 @@ import ListCards from './ListCards/ListCards'
 import { toast } from 'react-toastify'
 
 
-function Columns({ column }) {
+function Columns({ column, createNewCard }) {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
     id: column._id,
     data: { ...column }
@@ -52,14 +52,17 @@ function Columns({ column }) {
   const toggleOpenNewCardForm = () => setOpenNewCardForm(!openNewCardForm)
   const [newCardTitle, setNewCardTitle] = useState('')
 
-  const addNewCard = () => {
+  const addNewCard = async () => {
     if (!newCardTitle) {
       toast.error('Please enter card title')
       return
     }
-
+    const newCardData = {
+      title: newCardTitle,
+      columnId: column._id
+    }
     /// Xử lý gọi api thêm column
-
+    await createNewCard(newCardData)
     // Đóng trạng thái thêm column mới và clear input
     toggleOpenNewCardForm()
     setNewCardTitle('')
