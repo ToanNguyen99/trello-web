@@ -9,7 +9,7 @@ import Columns from './Columns/Columns'
 import { toast } from 'react-toastify'
 
 
-function ListColumns({ columns, createNewColumn, createNewCard }) {
+function ListColumns({ columns, createNewColumn, createNewCard, deleteColumnDetails }) {
   const [openNewColumnForm, setOpenNewColumnForm] = useState(false)
   const toggleOpenNewColumnForm = () => setOpenNewColumnForm(!openNewColumnForm)
   const [newColumnTitle, setNewColumnTitle] = useState('')
@@ -42,8 +42,14 @@ function ListColumns({ columns, createNewColumn, createNewCard }) {
         height: '100%'
       }}>
         {/* Box Column */}
-        {columns?.map((column) => <Columns column={column} key={column._id} createNewCard={createNewCard}/>)}
-
+        {columns?.map((column) =>
+          <Columns
+            column={column}
+            key={column._id}
+            createNewCard={createNewCard}
+            deleteColumnDetails={deleteColumnDetails}
+          />
+        )}
         {/* Button add new Column */}
         {!openNewColumnForm
           ? <Box onClick={toggleOpenNewColumnForm} sx={{
